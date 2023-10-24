@@ -1,3 +1,36 @@
 <style>p{color : #f00 ;}</style>
-<h1>見たな？トチャソカチャソ</h1>
-<p>初パソコンでのホームページ公開！</p>
+<p>let player;
+let earth;
+function intRand(min, max){
+  return floor(random(min, max));
+}
+function angle(origin, target) {
+  return  atan2(target.y - origin.y, target.x - origin.x);
+}
+function setup() {
+  new Canvas(450, 450);
+  player = new Sprite(width/2, height/2,30,30);
+  player.color = "#8BC34A";
+  player.bounciness = 1;
+  earth = new Sprite(width/2, height/2,1500);
+  for(let i=0; i<200; i++) {
+    let star = new Sprite(intRand(-2000,2000), intRand(-2000,2000), intRand(50,100));
+  }
+}
+
+function draw() {
+  background("#025");
+  if(kb.pressing("w")){
+    camera.x += (player.x - camera.x)/5;
+    camera.y += (player.y - camera.y)/5;
+  }
+  if(kb.pressing("x")){
+    player.bearing = angle(player, mouse);
+    player.applyForce(3);
+  }
+  if(kb.pressing("z")){
+    camera.zoom = 0.1
+  }else{
+    camera.zoom = 1;
+  }
+}</p>
